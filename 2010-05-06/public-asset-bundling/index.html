@@ -1,0 +1,370 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Public Asset Bundling in Rails - jherdman.ca</title>
+  <meta name="author" content="James Herdman">
+
+  
+  <meta name="description" content="IMPORTANT NOTE The below is kept merely for historical purposes. You should not use the techniques
+described below as Rails&#8217; Asset Pipeline
+is &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jherdman.github.com/2010-05-06/public-asset-bundling">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="jherdman.ca" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">jherdman.ca</a></h1>
+  
+    <h2>a programming blog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jherdman.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Public Asset Bundling in Rails</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-05-06T00:00:00-04:00" pubdate data-updated="true">May 6<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>IMPORTANT NOTE</h2>
+
+<p>The below is kept merely for historical purposes. You should not use the techniques
+described below as Rails&#8217; <a href="http://guides.rubyonrails.org/asset_pipeline.html">Asset Pipeline</a>
+is a much better option</p>
+
+<hr>
+
+
+<p>Sometimes, in larger Rails projects, we want to group together JavaScript or <abbr title="Cascading Style Sheet">CSS</abbr> files. Let&#8217;s use the the <a href="http://www.uploadify.com/" title="Uploadify: a Multiple File Upload Plugin for jQuery">Uploadify</a> project to illustrate how we can use a seldom discussed Rails feature to simplify inclusion of <abbr title="Cascading Style Sheet">CSS</abbr> and JavaScript files that are used in conjunction with each other: <code>ActionView::Helpers::AssetTagHelper</code>.</p>
+
+<h2>Materials</h2>
+
+<ul>
+<li><a href="http://www.uploadify.com/" title="Uploadify: a Multiple File Upload Plugin for jQuery">Uploadify</a></li>
+<li><a href="http://jquery.com/">jQuery</a></li>
+</ul>
+
+
+<h2>Considering the Norm</h2>
+
+<p>Rails defines a set of default JavaScript files to include in our view when we use <code>#javascript_include_tag(:default)</code>. From the Rails documentation we can see an example of the output:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">javascript_include_tag</span> <span class="ss">:defaults</span> <span class="c1"># =&gt;</span>
+</span><span class='line'>    <span class="s2">&quot;&lt;script type=&#39;text/javascript&#39; src=&#39;/javascripts/prototype.js&#39;&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="s2">    &lt;script type=&#39;text/javascript&#39; src=&#39;/javascripts/effects.js&#39;&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="s2">    ...</span>
+</span><span class='line'><span class="s2">    &lt;script type=&#39;text/javascript&#39; src=&#39;/javascripts/application.js&#39;&gt;&lt;/script&gt;&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is called an expansion. We have expansions for JavaScript and Stylesheets. We can use with both <code>#javascript_include_tag</code> and <code>#stylesheet_link_tag</code>. We can also register our own. It&#8217;s through expansions that we can bundle together JavaScript and and CSS files.</p>
+
+<h2>Registering Expansions</h2>
+
+<p>Registering expansions is done through two different methods: <code>ActionView::Helpers::AssetTagHelper.register_javascript_expansion</code>, and <code>ActionView::Helpers::AssetTagHelper.register_stylesheet_expansion</code>. Each of these methods takes a Hash as an argument which points to a list of asset names (e.g. &#8220;jquery.js&#8221;).</p>
+
+<p>Let&#8217;s look at how we would define the default <code>:default</code> for our JavaScript bundle:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">ActionView</span><span class="o">::</span><span class="no">Helpers</span><span class="o">::</span><span class="no">AssetTagHelper</span><span class="o">.</span><span class="n">register_javascript_expansion</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="o">[</span>
+</span><span class='line'>  <span class="s1">&#39;prototype&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s1">&#39;effects&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>  <span class="s1">&#39;application&#39;</span>
+</span><span class='line'><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&#8217;s a little verbose for setting the default, so Rails provides us <code>ActionView::Helpers::AssetTagHelper.register_javascript_include_default</code>. Let&#8217;s try this again:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">ActionView</span><span class="o">::</span><span class="no">Helpers</span><span class="o">::</span><span class="no">AssetTagHelper</span><span class="o">.</span><span class="n">register_javascript_include_default</span><span class="p">(</span>
+</span><span class='line'>  <span class="s1">&#39;prototype&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s1">&#39;effects&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>  <span class="s1">&#39;application&#39;</span>
+</span><span class='line'><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Let&#8217;s set a default using jQuery:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">ActionView</span><span class="o">::</span><span class="no">Helpers</span><span class="o">::</span><span class="no">AssetTagHelper</span><span class="o">.</span><span class="n">register_javascript_include_default</span><span class="p">(</span>
+</span><span class='line'>  <span class="s1">&#39;jquery&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s1">&#39;application&#39;</span>
+</span><span class='line'><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Easy as pie! Let&#8217;s setup expansions for <a href="http://www.uploadify.com/" title="Uploadify: a Multiple File Upload Plugin for jQuery">Uploadify</a>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">ActionView</span><span class="o">::</span><span class="no">Helpers</span><span class="o">::</span><span class="no">AssetTagHelper</span><span class="o">.</span><span class="n">register_javascript_expansion</span> <span class="ss">:uploadify</span> <span class="o">=&gt;</span> <span class="o">[</span>
+</span><span class='line'>  <span class="s1">&#39;swfobject&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s1">&#39;uploadify&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">ActionView</span><span class="o">::</span><span class="no">Helpers</span><span class="o">::</span><span class="no">AssetTagHelper</span><span class="o">.</span><span class="n">register_stylesheet_expansion</span> <span class="ss">:uploadify</span> <span class="o">=&gt;</span> <span class="o">[</span>
+</span><span class='line'>  <span class="s1">&#39;uploadify&#39;</span>
+</span><span class='line'><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now we can easily maintain asset bundles. Cool, eh?</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">James Herdman</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-05-06T00:00:00-04:00" pubdate data-updated="true">May 6<span>th</span>, 2010</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jherdman.github.com/2010-05-06/public-asset-bundling" data-via="james_herdman" data-counturl="http://jherdman.github.com/2010-05-06/public-asset-bundling" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2010-04-10/another-way-to-define-nodejs-objects" title="Previous Post: Another Way to Define Node.js Objects">&laquo; Another Way to Define Node.js Objects</a>
+      
+      
+        <a class="basic-alignment right" href="/2010-07-28/quick-vim-tips-using-markdown" title="Next Post: A Quick Vim Tips -- Using Markdown">A Quick Vim Tips -- Using Markdown &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012-01-15/programming-goals-for-2012">Programming Goals For 2012</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011-01-19/an-introduction-to-git">An Introduction to Git</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2010-09-02/quick-cucumber-tip">A Quick Cucumber Tip</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2010-07-28/quick-vim-tips-using-markdown">A Quick Vim Tips -- Using Markdown</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2010-05-06/public-asset-bundling">Public Asset Bundling in Rails</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jherdman">@jherdman</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jherdman',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("james_herdman", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/james_herdman" class="twitter-follow-button" data-show-count="false">Follow @james_herdman</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - James Herdman -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

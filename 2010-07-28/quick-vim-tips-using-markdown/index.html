@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>A Quick Vim Tips -- Using Markdown - jherdman.ca</title>
+  <meta name="author" content="James Herdman">
+
+  
+  <meta name="description" content="Vim is my text editor of choice. It doesn&#8217;t have all of the niceties of TextMate, so you often have to assemble them yourself through user &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jherdman.github.com/2010-07-28/quick-vim-tips-using-markdown">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="jherdman.ca" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">jherdman.ca</a></h1>
+  
+    <h2>a programming blog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jherdman.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">A Quick Vim Tips -- Using Markdown</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-07-28T00:00:00-04:00" pubdate data-updated="true">Jul 28<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.vim.org">Vim</a> is my text editor of choice. It doesn&#8217;t have all of the niceties of <a href="http://macromates.com">TextMate</a>, so you often have to assemble them yourself through user scripts and configuration. One of those areas that Vim needed a little assistance in was its support of <a href="http://daringfireball.net/projects/markdown/">Markdown</a>. The following are some quick tips for improving Vim&#8217;s handling of Markdown.</p>
+
+<h2>Get Better Syntax Support</h2>
+
+<p>Ben Williams has written a fairly good syntax definition for Markdown. It&#8217;s unfortunately not on Vim&#8217;s script index, so you&#8217;ll just have to <a href="http://plasticboy.com/markdown-vim-mode/">grab it from his blog</a>.</p>
+
+<h2>Preview Support</h2>
+
+<p>Chances are your package management system has <a href="http://www.pell.portland.or.us/~orc/Code/discount/">Discount</a> available. Install it. Once you do so, you&#8217;ll have a command line tool called &#8220;markdown&#8221; at your disposal. Once you do so, open up your vimrc and add the following to it:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; Markdown preview</span>
+</span><span class='line'>imap &amp;<span class="k">lt</span>;leader&amp;gt;<span class="k">p</span> &amp;<span class="k">lt</span>;ESC&amp;gt;:<span class="k">w</span><span class="p">!</span>&amp;<span class="k">lt</span>;CR&amp;gt;:<span class="p">!</span>markdown % &amp;<span class="k">lt</span>; %.html &amp;amp;&amp;amp; open %.html&amp;<span class="k">lt</span>;CR&amp;gt;&amp;<span class="k">lt</span>;CR<span class="p">&gt;</span><span class="k">a</span>
+</span><span class='line'>map  &amp;<span class="k">lt</span>;leader&amp;gt;<span class="k">p</span> &amp;<span class="k">lt</span>;ESC&amp;gt;:<span class="k">w</span><span class="p">!</span>&amp;<span class="k">lt</span>;CR&amp;gt;:<span class="p">!</span>markdown % &amp;<span class="k">lt</span>; %.html &amp;amp;&amp;amp; open %.html&amp;<span class="k">lt</span>;CR&amp;gt;&amp;<span class="k">lt</span>;CR<span class="p">&gt;</span><span class="k">a</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will generate a preview of your Markdown file that you are currently viewing. If you&#8217;re really clever, you&#8217;ll also add &#8220;*.mkd.html&#8221; to your gitignore file so that you don&#8217;t have to worry about the generated preview.</p>
+
+<h2>Soft Wrap Your Document</h2>
+
+<p>Head on over to <a href="http://vimcasts.org/episodes/soft-wrapping-text/">Vim Casts</a> to learn about how to use soft word wrapping in your documents. I find soft wrapped text much more natural looking when writing documents.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">James Herdman</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-07-28T00:00:00-04:00" pubdate data-updated="true">Jul 28<span>th</span>, 2010</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jherdman.github.com/2010-07-28/quick-vim-tips-using-markdown" data-via="james_herdman" data-counturl="http://jherdman.github.com/2010-07-28/quick-vim-tips-using-markdown" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2010-05-06/public-asset-bundling" title="Previous Post: Public Asset Bundling in Rails">&laquo; Public Asset Bundling in Rails</a>
+      
+      
+        <a class="basic-alignment right" href="/2010-09-02/quick-cucumber-tip" title="Next Post: A Quick Cucumber Tip">A Quick Cucumber Tip &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012-01-15/programming-goals-for-2012">Programming Goals For 2012</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011-01-19/an-introduction-to-git">An Introduction to Git</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2010-09-02/quick-cucumber-tip">A Quick Cucumber Tip</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2010-07-28/quick-vim-tips-using-markdown">A Quick Vim Tips -- Using Markdown</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2010-05-06/public-asset-bundling">Public Asset Bundling in Rails</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jherdman">@jherdman</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jherdman',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("james_herdman", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/james_herdman" class="twitter-follow-button" data-show-count="false">Follow @james_herdman</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - James Herdman -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

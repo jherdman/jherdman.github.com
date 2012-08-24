@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>jherdman.ca</title>
+  <title>Understanding Node.js' "require" - jherdman.ca</title>
   <meta name="author" content="James Herdman">
 
   
-  <meta name="description" content="Ah, January. It&#8217;s a new year, and a time wherein we set new goals for the year. An important part of goal setting is visibility &#8211; not &hellip;">
+  <meta name="description" content="I&#8217;ve been playing with Node.js lately. Node is an asynchronous, JavaScript library for building server-side applications that uses CommonJS &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jherdman.github.com/">
+  <link rel="canonical" href="http://jherdman.github.com/2010-04-05/understanding-nodejs-require">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -62,513 +62,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/2012-01-15/programming-goals-for-2012">Programming Goals for 2012</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-15T00:00:00-05:00" pubdate data-updated="true">Jan 15<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Ah, January. It&#8217;s a new year, and a time wherein we set new goals for the year. An important part of goal setting is visibility &#8211; not only being reminded of your goals, but being able to track and measure your progress towards attaining them.</p>
-
-<h3>Learn a Functional Language</h3>
-
-<p>I mostly do object oriented programming using Ruby on a day-to-day basis. It&#8217;s high time I learn a functional language. The paradigm shift will not only help me think in new ways, but it will open up new avenues of solving problems.</p>
-
-<p>Here are some candidate languages:</p>
-
-<ul>
-<li>Haskell</li>
-<li>Clojure</li>
-<li>Scheme</li>
-<li>Erlang</li>
-</ul>
-
-
-<p>I&#8217;ve been reading <a href="http://learnyouahaskell.com">Learn You a Haskell</a>, and I&#8217;m quite enjoying it, but Clojure has a certain appeal to me I can&#8217;t quite put my finger on yet.</p>
-
-<h3>Have a Better Understanding of the Foundations</h3>
-
-<p>I primarily work on HTTP APIs, but I don&#8217;t feel that I understand enough about HTTP, TCP/IP, and networking in general. I need to rectify this.</p>
-
-<h3>Publish More Blog Articles</h3>
-
-<p>I want to ensure my learnings have been captured and thought out, so I intend on blogging about them much more frequently than I have in the past. This article, in fact, is the first step towards this goal.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011-01-19/an-introduction-to-git">An Introduction to Git</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-19T00:00:00-05:00" pubdate data-updated="true">Jan 19<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Back in December I did a presentation for the <a href="http://www.meetup.com/torontoruby/">Toronto Ruby Brigade</a> introducing Git, and its core concepts. Here are my slides:</p>
-
-<div style="width:425px" id="__ss_6205221"><strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/jherdman/an-introduction-to-6205221" title="Introduction to Git">Introduction to Git</a></strong><object id="__sse6205221" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=anintroductiontogithd-101217004405-phpapp01&stripped_title=an-introduction-to-6205221&userName=jherdman" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed name="__sse6205221" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=anintroductiontogithd-101217004405-phpapp01&stripped_title=an-introduction-to-6205221&userName=jherdman" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object><div style="padding:5px 0 12px">View more <a href="http://www.slideshare.net/">presentations</a> from <a href="http://www.slideshare.net/jherdman">jherdman</a>.</div></div>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010-09-02/quick-cucumber-tip">A Quick Cucumber Tip</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-09-02T00:00:00-04:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><abbr title="Don't Repeat Yourself">DRY</abbr> code makes me a happy camper, so when I see patterns in my regular expressions in my Cucumber stories, I get a little agitated. These patterns come up quick frequently if you are using the explicit record retrieval pattern in your stories. Here are some examples of the steps we want to refine:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span> <span class="sr">/^I am a logged in user with the email address &quot;([^&quot;]+)&quot;$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">email_address</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by_email_address!</span><span class="p">(</span><span class="n">email_address</span><span class="p">)</span>
-</span><span class='line'>  <span class="c1"># etc</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">When</span> <span class="sr">/^I view the (\d+)(?:st|nd|rd|th) item$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">pos</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">within</span> <span class="s2">&quot;#items .item:nth-child(</span><span class="si">#{</span><span class="n">pos</span><span class="si">}</span><span class="s2">)&quot;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="c1"># etc</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Note the <code>"([<sup>"]+)"</code></sup> and <code>(?:st|nd|rd|th)</code> patterns. Let&#8217;s extract those patterns so that we never have to type them out again.</p>
-
-<p>The key to this is to recognize that Cucumber automatically loads all Ruby files in the &#8220;support&#8221; and &#8220;step_definitions&#8221; directories. Let&#8217;s create a file called &#8220;constants.rb&#8221; in &#8220;support&#8221;. Here&#8217;s mine:</p>
-
-<script src="http://gist.github.com/576424.js"> </script>
-
-
-<p>We can now rewrite our step definitions above to use these constants:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span> <span class="sr">/^I am a logged in user with the email address </span><span class="si">#{</span><span class="no">PHRASE</span><span class="si">}</span><span class="sr">$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">email_address</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by_email_address!</span><span class="p">(</span><span class="n">email_address</span><span class="p">)</span>
-</span><span class='line'>  <span class="c1"># etc</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">When</span> <span class="sr">/^I view the (\d+)</span><span class="si">#{</span><span class="no">POSITION</span><span class="si">}</span><span class="sr"> item$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">pos</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">within</span> <span class="s2">&quot;#items .item:nth-child(</span><span class="si">#{</span><span class="n">pos</span><span class="si">}</span><span class="s2">)&quot;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="c1"># etc</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now we have cleaner steps, with less repetition, and they should take us a little less time to write out in the future. Use, abuse and fork my module above.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010-07-28/quick-vim-tips-using-markdown">A Quick Vim Tips &#8211; Using Markdown</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-07-28T00:00:00-04:00" pubdate data-updated="true">Jul 28<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.vim.org">Vim</a> is my text editor of choice. It doesn&#8217;t have all of the niceties of <a href="http://macromates.com">TextMate</a>, so you often have to assemble them yourself through user scripts and configuration. One of those areas that Vim needed a little assistance in was its support of <a href="http://daringfireball.net/projects/markdown/">Markdown</a>. The following are some quick tips for improving Vim&#8217;s handling of Markdown.</p>
-
-<h2>Get Better Syntax Support</h2>
-
-<p>Ben Williams has written a fairly good syntax definition for Markdown. It&#8217;s unfortunately not on Vim&#8217;s script index, so you&#8217;ll just have to <a href="http://plasticboy.com/markdown-vim-mode/">grab it from his blog</a>.</p>
-
-<h2>Preview Support</h2>
-
-<p>Chances are your package management system has <a href="http://www.pell.portland.or.us/~orc/Code/discount/">Discount</a> available. Install it. Once you do so, you&#8217;ll have a command line tool called &#8220;markdown&#8221; at your disposal. Once you do so, open up your vimrc and add the following to it:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; Markdown preview</span>
-</span><span class='line'>imap &amp;<span class="k">lt</span>;leader&amp;gt;<span class="k">p</span> &amp;<span class="k">lt</span>;ESC&amp;gt;:<span class="k">w</span><span class="p">!</span>&amp;<span class="k">lt</span>;CR&amp;gt;:<span class="p">!</span>markdown % &amp;<span class="k">lt</span>; %.html &amp;amp;&amp;amp; open %.html&amp;<span class="k">lt</span>;CR&amp;gt;&amp;<span class="k">lt</span>;CR<span class="p">&gt;</span><span class="k">a</span>
-</span><span class='line'>map  &amp;<span class="k">lt</span>;leader&amp;gt;<span class="k">p</span> &amp;<span class="k">lt</span>;ESC&amp;gt;:<span class="k">w</span><span class="p">!</span>&amp;<span class="k">lt</span>;CR&amp;gt;:<span class="p">!</span>markdown % &amp;<span class="k">lt</span>; %.html &amp;amp;&amp;amp; open %.html&amp;<span class="k">lt</span>;CR&amp;gt;&amp;<span class="k">lt</span>;CR<span class="p">&gt;</span><span class="k">a</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This will generate a preview of your Markdown file that you are currently viewing. If you&#8217;re really clever, you&#8217;ll also add &#8220;*.mkd.html&#8221; to your gitignore file so that you don&#8217;t have to worry about the generated preview.</p>
-
-<h2>Soft Wrap Your Document</h2>
-
-<p>Head on over to <a href="http://vimcasts.org/episodes/soft-wrapping-text/">Vim Casts</a> to learn about how to use soft word wrapping in your documents. I find soft wrapped text much more natural looking when writing documents.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010-05-06/public-asset-bundling">Public Asset Bundling in Rails</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-05-06T00:00:00-04:00" pubdate data-updated="true">May 6<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>IMPORTANT NOTE</h2>
-
-<p>The below is kept merely for historical purposes. You should not use the techniques
-described below as Rails&#8217; <a href="http://guides.rubyonrails.org/asset_pipeline.html">Asset Pipeline</a>
-is a much better option</p>
-
-<hr>
-
-
-<p>Sometimes, in larger Rails projects, we want to group together JavaScript or <abbr title="Cascading Style Sheet">CSS</abbr> files. Let&#8217;s use the the <a href="http://www.uploadify.com/" title="Uploadify: a Multiple File Upload Plugin for jQuery">Uploadify</a> project to illustrate how we can use a seldom discussed Rails feature to simplify inclusion of <abbr title="Cascading Style Sheet">CSS</abbr> and JavaScript files that are used in conjunction with each other: <code>ActionView::Helpers::AssetTagHelper</code>.</p>
-
-<h2>Materials</h2>
-
-<ul>
-<li><a href="http://www.uploadify.com/" title="Uploadify: a Multiple File Upload Plugin for jQuery">Uploadify</a></li>
-<li><a href="http://jquery.com/">jQuery</a></li>
-</ul>
-
-
-<h2>Considering the Norm</h2>
-
-<p>Rails defines a set of default JavaScript files to include in our view when we use <code>#javascript_include_tag(:default)</code>. From the Rails documentation we can see an example of the output:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">javascript_include_tag</span> <span class="ss">:defaults</span> <span class="c1"># =&gt;</span>
-</span><span class='line'>    <span class="s2">&quot;&lt;script type=&#39;text/javascript&#39; src=&#39;/javascripts/prototype.js&#39;&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="s2">    &lt;script type=&#39;text/javascript&#39; src=&#39;/javascripts/effects.js&#39;&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="s2">    ...</span>
-</span><span class='line'><span class="s2">    &lt;script type=&#39;text/javascript&#39; src=&#39;/javascripts/application.js&#39;&gt;&lt;/script&gt;&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This is called an expansion. We have expansions for JavaScript and Stylesheets. We can use with both <code>#javascript_include_tag</code> and <code>#stylesheet_link_tag</code>. We can also register our own. It&#8217;s through expansions that we can bundle together JavaScript and and CSS files.</p>
-
-<h2>Registering Expansions</h2>
-
-<p>Registering expansions is done through two different methods: <code>ActionView::Helpers::AssetTagHelper.register_javascript_expansion</code>, and <code>ActionView::Helpers::AssetTagHelper.register_stylesheet_expansion</code>. Each of these methods takes a Hash as an argument which points to a list of asset names (e.g. &#8220;jquery.js&#8221;).</p>
-
-<p>Let&#8217;s look at how we would define the default <code>:default</code> for our JavaScript bundle:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">ActionView</span><span class="o">::</span><span class="no">Helpers</span><span class="o">::</span><span class="no">AssetTagHelper</span><span class="o">.</span><span class="n">register_javascript_expansion</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="o">[</span>
-</span><span class='line'>  <span class="s1">&#39;prototype&#39;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s1">&#39;effects&#39;</span><span class="p">,</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'>  <span class="s1">&#39;application&#39;</span>
-</span><span class='line'><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>That&#8217;s a little verbose for setting the default, so Rails provides us <code>ActionView::Helpers::AssetTagHelper.register_javascript_include_default</code>. Let&#8217;s try this again:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">ActionView</span><span class="o">::</span><span class="no">Helpers</span><span class="o">::</span><span class="no">AssetTagHelper</span><span class="o">.</span><span class="n">register_javascript_include_default</span><span class="p">(</span>
-</span><span class='line'>  <span class="s1">&#39;prototype&#39;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s1">&#39;effects&#39;</span><span class="p">,</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'>  <span class="s1">&#39;application&#39;</span>
-</span><span class='line'><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Let&#8217;s set a default using jQuery:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">ActionView</span><span class="o">::</span><span class="no">Helpers</span><span class="o">::</span><span class="no">AssetTagHelper</span><span class="o">.</span><span class="n">register_javascript_include_default</span><span class="p">(</span>
-</span><span class='line'>  <span class="s1">&#39;jquery&#39;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s1">&#39;application&#39;</span>
-</span><span class='line'><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Easy as pie! Let&#8217;s setup expansions for <a href="http://www.uploadify.com/" title="Uploadify: a Multiple File Upload Plugin for jQuery">Uploadify</a>:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">ActionView</span><span class="o">::</span><span class="no">Helpers</span><span class="o">::</span><span class="no">AssetTagHelper</span><span class="o">.</span><span class="n">register_javascript_expansion</span> <span class="ss">:uploadify</span> <span class="o">=&gt;</span> <span class="o">[</span>
-</span><span class='line'>  <span class="s1">&#39;swfobject&#39;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s1">&#39;uploadify&#39;</span><span class="p">,</span>
-</span><span class='line'><span class="o">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">ActionView</span><span class="o">::</span><span class="no">Helpers</span><span class="o">::</span><span class="no">AssetTagHelper</span><span class="o">.</span><span class="n">register_stylesheet_expansion</span> <span class="ss">:uploadify</span> <span class="o">=&gt;</span> <span class="o">[</span>
-</span><span class='line'>  <span class="s1">&#39;uploadify&#39;</span>
-</span><span class='line'><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now we can easily maintain asset bundles. Cool, eh?</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010-04-10/another-way-to-define-nodejs-objects">Another Way to Define Node.js Objects</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-04-10T00:00:00-04:00" pubdate data-updated="true">Apr 10<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In <a href="/2010-04-05/understanding-nodejs-require.html">my last post</a> I discussed different ways to define objects using the <a href="http://commonjs.org/">CommonJS</a> module system as implemented in <a href="http://nodejs.org/">Node.js</a>. There&#8217;s one particular example I wanted to revisit:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">Circle</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">radius</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">radius</span> <span class="o">=</span> <span class="nx">radius</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">Circle</span><span class="p">.</span><span class="nx">PI</span> <span class="o">=</span> <span class="mf">3.14</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">Circle</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">area</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>      <span class="k">return</span> <span class="nx">Circle</span><span class="p">.</span><span class="nx">PI</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">radius</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">radius</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">exports</span><span class="p">.</span><span class="nx">Circle</span> <span class="o">=</span> <span class="nx">Circle</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I had decried this form as awkward as illustrated by this scenario:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">node</span><span class="o">&gt;</span> <span class="kd">var</span> <span class="nx">circle</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;circle_object&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span> <span class="nx">Circle</span><span class="o">:</span> <span class="p">{</span> <span class="p">[</span><span class="nb">Function</span><span class="p">]</span> <span class="nx">PI</span><span class="o">:</span> <span class="mf">3.14</span> <span class="p">}</span> <span class="p">}</span>
-</span><span class='line'><span class="nx">node</span><span class="o">&gt;</span> <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">circle</span><span class="p">.</span><span class="nx">Circle</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span> <span class="nx">radius</span><span class="o">:</span> <span class="mi">2</span> <span class="p">}</span>
-</span><span class='line'><span class="nx">node</span><span class="o">&gt;</span> <span class="nx">c</span><span class="p">.</span><span class="nx">area</span><span class="p">()</span>
-</span><span class='line'><span class="mf">12.56</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I was reading some of the source code for the new <a href="http://groups.google.com/group/nodejs/browse_thread/thread/b6e0165f983d1f08">0.1.90 release of Node</a>, and I saw an example that made me realize we&#8217;re using this object wrong. Here&#8217;s a better way to use the above definition:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">node</span><span class="o">&gt;</span> <span class="kd">var</span> <span class="nx">Circle</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;circle_object&#39;</span><span class="p">).</span><span class="nx">Circle</span>
-</span><span class='line'><span class="p">{</span> <span class="nx">Circle</span><span class="o">:</span> <span class="p">{</span> <span class="p">[</span><span class="nb">Function</span><span class="p">]</span> <span class="nx">PI</span><span class="o">:</span> <span class="mf">3.14</span> <span class="p">}</span> <span class="p">}</span>
-</span><span class='line'><span class="nx">node</span><span class="o">&gt;</span> <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Circle</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span> <span class="nx">radius</span><span class="o">:</span> <span class="mi">2</span> <span class="p">}</span>
-</span><span class='line'><span class="nx">node</span><span class="o">&gt;</span> <span class="nx">c</span><span class="p">.</span><span class="nx">area</span><span class="p">()</span>
-</span><span class='line'><span class="mf">12.56</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Look at that! We&#8217;ve got traditional style objects without polluting the global object.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010-04-05/understanding-nodejs-require">Understanding Node.js&#8217; &#8220;Require&#8221;</a></h1>
+      <h1 class="entry-title">Understanding Node.js' "Require"</h1>
     
     
       <p class="meta">
@@ -591,7 +90,7 @@ is a much better option</p>
   </header>
 
 
-  <div class="entry-content"><p>I&#8217;ve been playing with <a href="http://nodejs.org">Node.js</a> lately. Node is an asynchronous, JavaScript library for building server-side applications that uses <a href="http://commonjs.org/">CommonJS</a> conventions. One of these conventions, modules, has confused me for quite a while now. Let&#8217;s take a closer look at them.</p>
+<div class="entry-content"><p>I&#8217;ve been playing with <a href="http://nodejs.org">Node.js</a> lately. Node is an asynchronous, JavaScript library for building server-side applications that uses <a href="http://commonjs.org/">CommonJS</a> conventions. One of these conventions, modules, has confused me for quite a while now. Let&#8217;s take a closer look at them.</p>
 
 <p>We&#8217;re going to be using Node version 0.1.33 in this article. Let&#8217;s get to it.</p>
 
@@ -927,22 +426,16 @@ using Node</strong>. It&#8217;s dangerous, and unnecessary. Try to think of the 
 the contents of your class&#8217; body, and the exported methods as the public
 interface.</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010-04-04/hello-world">Hello, World!</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">James Herdman</span></span>
+
+      
 
 
 
@@ -954,27 +447,34 @@ interface.</p>
   
 
 
-<time datetime="2010-04-04T00:00:00-04:00" pubdate data-updated="true">Apr 4<span>th</span>, 2010</time>
-        
-      </p>
+<time datetime="2010-04-05T00:00:00-04:00" pubdate data-updated="true">Apr 5<span>th</span>, 2010</time>
+      
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>This is my blog. This was going to be a mission statement. Instead I&#8217;ve decided to just ramble incoherently for a bit and suggest that I may eventually have content.</p>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jherdman.github.com/2010-04-05/understanding-nodejs-require" data-via="james_herdman" data-counturl="http://jherdman.github.com/2010-04-05/understanding-nodejs-require" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2010-04-04/hello-world" title="Previous Post: Hello, world!">&laquo; Hello, world!</a>
+      
+      
+        <a class="basic-alignment right" href="/2010-04-10/another-way-to-define-nodejs-objects" title="Next Post: Another Way to Define Node.js Objects">Another Way to Define Node.js Objects &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -994,7 +494,7 @@ interface.</p>
       </li>
     
       <li class="post">
-        <a href="/2010-07-28/quick-vim-tips-using-markdown">A Quick Vim Tips &#8211; Using Markdown</a>
+        <a href="/2010-07-28/quick-vim-tips-using-markdown">A Quick Vim Tips -- Using Markdown</a>
       </li>
     
       <li class="post">
@@ -1007,7 +507,7 @@ interface.</p>
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/jherdman">@jherdman</a> on GitHub
@@ -1037,7 +537,7 @@ interface.</p>
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -1056,6 +556,7 @@ interface.</p>
 
   
 </aside>
+
 
     </div>
   </div>
