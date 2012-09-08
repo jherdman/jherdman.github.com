@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[jherdman.ca]]></title>
-  <link href="http://jherdman.github.com/atom.xml" rel="self"/>
-  <link href="http://jherdman.github.com/"/>
-  <updated>2012-08-24T09:28:14-04:00</updated>
-  <id>http://jherdman.github.com/</id>
+  <link href="http://jherdman.ca/atom.xml" rel="self"/>
+  <link href="http://jherdman.ca/"/>
+  <updated>2012-09-08T13:51:53-04:00</updated>
+  <id>http://jherdman.ca/</id>
   <author>
     <name><![CDATA[James Herdman]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Programming Goals For 2012]]></title>
-    <link href="http://jherdman.github.com/2012-01-15/programming-goals-for-2012"/>
+    <link href="http://jherdman.ca/2012-01-15/programming-goals-for-2012"/>
     <updated>2012-01-15T00:00:00-05:00</updated>
-    <id>http://jherdman.github.com/2012-01-15/programming-goals-for-2012</id>
+    <id>http://jherdman.ca/2012-01-15/programming-goals-for-2012</id>
     <content type="html"><![CDATA[<p>Ah, January. It&#8217;s a new year, and a time wherein we set new goals for the year. An important part of goal setting is visibility &#8211; not only being reminded of your goals, but being able to track and measure your progress towards attaining them.</p>
 
 <h3>Learn a Functional Language</h3>
@@ -48,9 +48,9 @@
   
   <entry>
     <title type="html"><![CDATA[An Introduction to Git]]></title>
-    <link href="http://jherdman.github.com/2011-01-19/an-introduction-to-git"/>
+    <link href="http://jherdman.ca/2011-01-19/an-introduction-to-git"/>
     <updated>2011-01-19T00:00:00-05:00</updated>
-    <id>http://jherdman.github.com/2011-01-19/an-introduction-to-git</id>
+    <id>http://jherdman.ca/2011-01-19/an-introduction-to-git</id>
     <content type="html"><![CDATA[<p>Back in December I did a presentation for the <a href="http://www.meetup.com/torontoruby/">Toronto Ruby Brigade</a> introducing Git, and its core concepts. Here are my slides:</p>
 
 <div style="width:425px" id="__ss_6205221"><strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/jherdman/an-introduction-to-6205221" title="Introduction to Git">Introduction to Git</a></strong><object id="__sse6205221" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=anintroductiontogithd-101217004405-phpapp01&stripped_title=an-introduction-to-6205221&userName=jherdman" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed name="__sse6205221" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=anintroductiontogithd-101217004405-phpapp01&stripped_title=an-introduction-to-6205221&userName=jherdman" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object><div style="padding:5px 0 12px">View more <a href="http://www.slideshare.net/">presentations</a> from <a href="http://www.slideshare.net/jherdman">jherdman</a>.</div></div>
@@ -60,9 +60,9 @@
   
   <entry>
     <title type="html"><![CDATA[A Quick Cucumber Tip]]></title>
-    <link href="http://jherdman.github.com/2010-09-02/quick-cucumber-tip"/>
+    <link href="http://jherdman.ca/2010-09-02/quick-cucumber-tip"/>
     <updated>2010-09-02T00:00:00-04:00</updated>
-    <id>http://jherdman.github.com/2010-09-02/quick-cucumber-tip</id>
+    <id>http://jherdman.ca/2010-09-02/quick-cucumber-tip</id>
     <content type="html"><![CDATA[<p><abbr title="Don't Repeat Yourself">DRY</abbr> code makes me a happy camper, so when I see patterns in my regular expressions in my Cucumber stories, I get a little agitated. These patterns come up quick frequently if you are using the explicit record retrieval pattern in your stories. Here are some examples of the steps we want to refine:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -126,9 +126,9 @@
   
   <entry>
     <title type="html"><![CDATA[A Quick Vim Tips -- Using Markdown]]></title>
-    <link href="http://jherdman.github.com/2010-07-28/quick-vim-tips-using-markdown"/>
+    <link href="http://jherdman.ca/2010-07-28/quick-vim-tips-using-markdown"/>
     <updated>2010-07-28T00:00:00-04:00</updated>
-    <id>http://jherdman.github.com/2010-07-28/quick-vim-tips-using-markdown</id>
+    <id>http://jherdman.ca/2010-07-28/quick-vim-tips-using-markdown</id>
     <content type="html"><![CDATA[<p><a href="http://www.vim.org">Vim</a> is my text editor of choice. It doesn&#8217;t have all of the niceties of <a href="http://macromates.com">TextMate</a>, so you often have to assemble them yourself through user scripts and configuration. One of those areas that Vim needed a little assistance in was its support of <a href="http://daringfireball.net/projects/markdown/">Markdown</a>. The following are some quick tips for improving Vim&#8217;s handling of Markdown.</p>
 
 <h2>Get Better Syntax Support</h2>
@@ -158,9 +158,9 @@
   
   <entry>
     <title type="html"><![CDATA[Public Asset Bundling in Rails]]></title>
-    <link href="http://jherdman.github.com/2010-05-06/public-asset-bundling"/>
+    <link href="http://jherdman.ca/2010-05-06/public-asset-bundling"/>
     <updated>2010-05-06T00:00:00-04:00</updated>
-    <id>http://jherdman.github.com/2010-05-06/public-asset-bundling</id>
+    <id>http://jherdman.ca/2010-05-06/public-asset-bundling</id>
     <content type="html"><![CDATA[<h2>IMPORTANT NOTE</h2>
 
 <p>The below is kept merely for historical purposes. You should not use the techniques
@@ -277,10 +277,10 @@ is a much better option</p>
   
   <entry>
     <title type="html"><![CDATA[Another Way to Define Node.js Objects]]></title>
-    <link href="http://jherdman.github.com/2010-04-10/another-way-to-define-nodejs-objects"/>
+    <link href="http://jherdman.ca/2010-04-10/another-way-to-define-nodejs-objects"/>
     <updated>2010-04-10T00:00:00-04:00</updated>
-    <id>http://jherdman.github.com/2010-04-10/another-way-to-define-nodejs-objects</id>
-    <content type="html"><![CDATA[<p>In <a href="http://jherdman.github.com/2010-04-05/understanding-nodejs-require.html">my last post</a> I discussed different ways to define objects using the <a href="http://commonjs.org/">CommonJS</a> module system as implemented in <a href="http://nodejs.org/">Node.js</a>. There&#8217;s one particular example I wanted to revisit:</p>
+    <id>http://jherdman.ca/2010-04-10/another-way-to-define-nodejs-objects</id>
+    <content type="html"><![CDATA[<p>In <a href="http://jherdman.ca/2010-04-05/understanding-nodejs-require.html">my last post</a> I discussed different ways to define objects using the <a href="http://commonjs.org/">CommonJS</a> module system as implemented in <a href="http://nodejs.org/">Node.js</a>. There&#8217;s one particular example I wanted to revisit:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -351,9 +351,9 @@ is a much better option</p>
   
   <entry>
     <title type="html"><![CDATA[Understanding Node.js' "require"]]></title>
-    <link href="http://jherdman.github.com/2010-04-05/understanding-nodejs-require"/>
+    <link href="http://jherdman.ca/2010-04-05/understanding-nodejs-require"/>
     <updated>2010-04-05T00:00:00-04:00</updated>
-    <id>http://jherdman.github.com/2010-04-05/understanding-nodejs-require</id>
+    <id>http://jherdman.ca/2010-04-05/understanding-nodejs-require</id>
     <content type="html"><![CDATA[<p>I&#8217;ve been playing with <a href="http://nodejs.org">Node.js</a> lately. Node is an asynchronous, JavaScript library for building server-side applications that uses <a href="http://commonjs.org/">CommonJS</a> conventions. One of these conventions, modules, has confused me for quite a while now. Let&#8217;s take a closer look at them.</p>
 
 <p>We&#8217;re going to be using Node version 0.1.33 in this article. Let&#8217;s get to it.</p>
@@ -694,9 +694,9 @@ interface.</p>
   
   <entry>
     <title type="html"><![CDATA[Hello, world!]]></title>
-    <link href="http://jherdman.github.com/2010-04-04/hello-world"/>
+    <link href="http://jherdman.ca/2010-04-04/hello-world"/>
     <updated>2010-04-04T00:00:00-04:00</updated>
-    <id>http://jherdman.github.com/2010-04-04/hello-world</id>
+    <id>http://jherdman.ca/2010-04-04/hello-world</id>
     <content type="html"><![CDATA[<p>This is my blog. This was going to be a mission statement. Instead I&#8217;ve decided to just ramble incoherently for a bit and suggest that I may eventually have content.</p>
 ]]></content>
   </entry>
