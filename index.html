@@ -142,8 +142,8 @@ describe PostsController do describe &#39;GET # &hellip;">
 </span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;loads the requested resource&#39;</span> <span class="k">do</span>
-</span><span class='line'>      <span class="no">Post</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:find</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="n">post</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="p">{</span> <span class="n">post</span> <span class="p">}</span>
 </span><span class='line'>      <span class="n">get</span> <span class="ss">:show</span><span class="p">,</span> <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="n">post</span><span class="o">.</span><span class="n">id</span>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">assigns</span><span class="p">(</span><span class="ss">:post</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="n">post</span><span class="p">)</span>
 </span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
@@ -175,8 +175,8 @@ describe PostsController do describe &#39;GET # &hellip;">
 </span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;loads the requested resource&#39;</span> <span class="k">do</span>
-</span><span class='line'>      <span class="no">Post</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:find</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="n">post</span><span class="o">.</span><span class="n">to_param</span><span class="p">)</span> <span class="p">{</span> <span class="n">post</span> <span class="p">}</span>
 </span><span class='line'>      <span class="n">get</span> <span class="ss">:show</span><span class="p">,</span> <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="n">post</span><span class="o">.</span><span class="n">to_param</span>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">assigns</span><span class="p">(</span><span class="ss">:post</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="n">post</span><span class="p">)</span>
 </span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
@@ -184,6 +184,13 @@ describe PostsController do describe &#39;GET # &hellip;">
 
 
 <p>This insulates us from changes to how a resource might be represented in the URI, and more accruately represents how Rails internally handles your resource with URI helpers. For more of the gory details, check out <a href="https://github.com/rails/rails/blob/3-2-stable/actionpack/lib/action_dispatch/routing/polymorphic_routes.rb">ActionDispatch::Routing::PolymorphicRoutes</a>.</p>
+
+<h3>Edit</h3>
+
+<ul>
+<li>Updated both examples to remove another common silly antipattern in my examples. A tip of the hat to <a href="https://twitter.com/camwest">@camwest</a>.</li>
+</ul>
+
 </div>
   
   

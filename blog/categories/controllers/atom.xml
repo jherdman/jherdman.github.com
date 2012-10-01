@@ -4,7 +4,7 @@
   <title><![CDATA[Category: controllers | jherdman.ca]]></title>
   <link href="http://jherdman.ca/blog/categories/controllers/atom.xml" rel="self"/>
   <link href="http://jherdman.ca/"/>
-  <updated>2012-09-30T23:53:09-04:00</updated>
+  <updated>2012-10-01T08:21:57-04:00</updated>
   <id>http://jherdman.ca/</id>
   <author>
     <name><![CDATA[James Herdman]]></name>
@@ -31,8 +31,8 @@ before do
 end
 
 it 'loads the requested resource' do
-  Post.should_receive(:find).with(post.id) { post }
   get :show, :id =&gt; post.id
+  expect(assigns(:post)).to eq(post)
 end
 </code></pre>
 
@@ -53,8 +53,8 @@ before do
 end
 
 it 'loads the requested resource' do
-  Post.should_receive(:find).with(post.to_param) { post }
   get :show, :id =&gt; post.to_param
+  expect(assigns(:post)).to eq(post)
 end
 </code></pre>
 
@@ -63,6 +63,13 @@ end
 ```</p>
 
 <p>This insulates us from changes to how a resource might be represented in the URI, and more accruately represents how Rails internally handles your resource with URI helpers. For more of the gory details, check out <a href="https://github.com/rails/rails/blob/3-2-stable/actionpack/lib/action_dispatch/routing/polymorphic_routes.rb">ActionDispatch::Routing::PolymorphicRoutes</a>.</p>
+
+<h3>Edit</h3>
+
+<ul>
+<li>Updated both examples to remove another common silly antipattern in my examples. A tip of the hat to <a href="https://twitter.com/camwest">@camwest</a>.</li>
+</ul>
+
 ]]></content>
   </entry>
   
