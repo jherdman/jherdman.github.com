@@ -18,8 +18,8 @@ describe PostsController do
     end
 
     it 'loads the requested resource' do
-      Post.should_receive(:find).with(post.id) { post }
       get :show, :id => post.id
+      expect(assigns(:post)).to eq(post)
     end
   end
 end
@@ -37,11 +37,15 @@ describe PostsController do
     end
 
     it 'loads the requested resource' do
-      Post.should_receive(:find).with(post.to_param) { post }
       get :show, :id => post.to_param
+      expect(assigns(:post)).to eq(post)
     end
   end
 end
 ```
 
 This insulates us from changes to how a resource might be represented in the URI, and more accruately represents how Rails internally handles your resource with URI helpers. For more of the gory details, check out [ActionDispatch::Routing::PolymorphicRoutes](https://github.com/rails/rails/blob/3-2-stable/actionpack/lib/action_dispatch/routing/polymorphic_routes.rb).
+
+### Edit
+
+* Updated both examples to remove another common silly antipattern in my examples. A tip of the hat to [@camwest](https://twitter.com/camwest).
