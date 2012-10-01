@@ -9,7 +9,21 @@
   <meta name="author" content="James Herdman">
 
   
-  <meta name="description" content="Ah, January. It&#8217;s a new year, and a time wherein we set new goals for the year. An important part of goal setting is visibility &#8211; not &hellip;">
+  <meta name="description" content="Here&#8217;s a run of the mill test for a Rails controller action: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+describe PostsController do describe &#39;GET # &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +86,110 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2012-09-30/common-rails-controller-testing-antipattern">A Common Rails Controller Testing Antipattern</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-30T23:18:00-04:00" pubdate data-updated="true">Sep 30<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Here&#8217;s a run of the mill test for a Rails controller action:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="no">PostsController</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">describe</span> <span class="s1">&#39;GET #show&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">let</span><span class="p">(</span><span class="ss">:post</span><span class="p">)</span> <span class="p">{</span> <span class="n">mock_model</span><span class="p">(</span><span class="no">Post</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">before</span> <span class="k">do</span>
+</span><span class='line'>      <span class="no">Post</span><span class="o">.</span><span class="n">stub</span><span class="p">(</span><span class="ss">:find</span> <span class="o">=&gt;</span> <span class="n">post</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;loads the requested resource&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="no">Post</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:find</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="n">post</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="p">{</span> <span class="n">post</span> <span class="p">}</span>
+</span><span class='line'>      <span class="n">get</span> <span class="ss">:show</span><span class="p">,</span> <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="n">post</span><span class="o">.</span><span class="n">id</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This isn&#8217;t a horrible test, but there&#8217;s a common antipattern where we are requesting the resource: we&#8217;re explicitly using the record&#8217;s database ID, line 10. All ActiveRecord objects have a URI friendly name via the <a href="https://github.com/rails/rails/blob/3-2-stable/activemodel/lib/active_model/conversion.rb#L49-53">ActiveModel::Naming#to_param</a> method. Let&#8217;s rewrite our test to use this method:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="no">PostsController</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">describe</span> <span class="s1">&#39;GET #show&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">let</span><span class="p">(</span><span class="ss">:post</span><span class="p">)</span> <span class="p">{</span> <span class="n">mock_model</span><span class="p">(</span><span class="no">Post</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">before</span> <span class="k">do</span>
+</span><span class='line'>      <span class="no">Post</span><span class="o">.</span><span class="n">stub</span><span class="p">(</span><span class="ss">:find</span> <span class="o">=&gt;</span> <span class="n">post</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;loads the requested resource&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="no">Post</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:find</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="n">post</span><span class="o">.</span><span class="n">to_param</span><span class="p">)</span> <span class="p">{</span> <span class="n">post</span> <span class="p">}</span>
+</span><span class='line'>      <span class="n">get</span> <span class="ss">:show</span><span class="p">,</span> <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="n">post</span><span class="o">.</span><span class="n">to_param</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This insulates us from changes to how a resource might be represented in the URI, and more accruately represents how Rails internally handles your resource with URI helpers. For more of the gory details, check out <a href="https://github.com/rails/rails/blob/3-2-stable/actionpack/lib/action_dispatch/routing/polymorphic_routes.rb">ActionDispatch::Routing::PolymorphicRoutes</a>.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1006,6 +1124,10 @@ interface.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012-09-30/common-rails-controller-testing-antipattern">A Common Rails Controller Testing Antipattern</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012-01-15/programming-goals-for-2012">Programming Goals For 2012</a>
       </li>
     
@@ -1019,10 +1141,6 @@ interface.</p>
     
       <li class="post">
         <a href="/2010-07-28/quick-vim-tips-using-markdown">A Quick Vim Tips &#8211; Using Markdown</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2010-05-06/public-asset-bundling">Public Asset Bundling in Rails</a>
       </li>
     
   </ul>

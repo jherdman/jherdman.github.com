@@ -5,11 +5,25 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>A Quick Cucumber Tip - jherdman.ca</title>
+  <title>A Common Rails Controller Testing Antipattern - jherdman.ca</title>
   <meta name="author" content="James Herdman">
 
   
-  <meta name="description" content="DRY code makes me a happy camper, so when I see patterns in my regular expressions in my Cucumber stories, I get a little agitated. These patterns &hellip;">
+  <meta name="description" content="Here&#8217;s a run of the mill test for a Rails controller action: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+describe PostsController do describe &#39;GET # &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +32,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jherdman.ca/2010-09-02/quick-cucumber-tip">
+  <link rel="canonical" href="http://jherdman.ca/2012-09-30/common-rails-controller-testing-antipattern">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -76,7 +90,7 @@
   <header>
     
       
-        <h1 class="entry-title">A Quick Cucumber Tip</h1>
+        <h1 class="entry-title">A Common Rails Controller Testing Antipattern</h1>
       
     
     
@@ -93,14 +107,14 @@
   
 
 
-<time datetime="2010-09-02T00:00:00-04:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2010</time>
+<time datetime="2012-09-30T23:18:00-04:00" pubdate data-updated="true">Sep 30<span>th</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p><abbr title="Don't Repeat Yourself">DRY</abbr> code makes me a happy camper, so when I see patterns in my regular expressions in my Cucumber stories, I get a little agitated. These patterns come up quick frequently if you are using the explicit record retrieval pattern in your stories. Here are some examples of the steps we want to refine:</p>
+<div class="entry-content"><p>Here&#8217;s a run of the mill test for a Rails controller action:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -112,27 +126,28 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span> <span class="sr">/^I am a logged in user with the email address &quot;([^&quot;]+)&quot;$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">email_address</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by_email_address!</span><span class="p">(</span><span class="n">email_address</span><span class="p">)</span>
-</span><span class='line'>  <span class="c1"># etc</span>
-</span><span class='line'><span class="k">end</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="no">PostsController</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">describe</span> <span class="s1">&#39;GET #show&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">let</span><span class="p">(</span><span class="ss">:post</span><span class="p">)</span> <span class="p">{</span> <span class="n">mock_model</span><span class="p">(</span><span class="no">Post</span><span class="p">)</span> <span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="no">When</span> <span class="sr">/^I view the (\d+)(?:st|nd|rd|th) item$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">pos</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">within</span> <span class="s2">&quot;#items .item:nth-child(</span><span class="si">#{</span><span class="n">pos</span><span class="si">}</span><span class="s2">)&quot;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="c1"># etc</span>
+</span><span class='line'>    <span class="n">before</span> <span class="k">do</span>
+</span><span class='line'>      <span class="no">Post</span><span class="o">.</span><span class="n">stub</span><span class="p">(</span><span class="ss">:find</span> <span class="o">=&gt;</span> <span class="n">post</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;loads the requested resource&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="no">Post</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:find</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="n">post</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="p">{</span> <span class="n">post</span> <span class="p">}</span>
+</span><span class='line'>      <span class="n">get</span> <span class="ss">:show</span><span class="p">,</span> <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="n">post</span><span class="o">.</span><span class="n">id</span>
+</span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Note the <code>"([<sup>"]+)"</code></sup> and <code>(?:st|nd|rd|th)</code> patterns. Let&#8217;s extract those patterns so that we never have to type them out again.</p>
-
-<p>The key to this is to recognize that Cucumber automatically loads all Ruby files in the &#8220;support&#8221; and &#8220;step_definitions&#8221; directories. Let&#8217;s create a file called &#8220;constants.rb&#8221; in &#8220;support&#8221;. Here&#8217;s mine:</p>
-
-<script src="http://gist.github.com/576424.js"> </script>
-
-
-<p>We can now rewrite our step definitions above to use these constants:</p>
+<p>This isn&#8217;t a horrible test, but there&#8217;s a common antipattern where we are requesting the resource: we&#8217;re explicitly using the record&#8217;s database ID, line 10. All ActiveRecord objects have a URI friendly name via the <a href="https://github.com/rails/rails/blob/3-2-stable/activemodel/lib/active_model/conversion.rb#L49-53">ActiveModel::Naming#to_param</a> method. Let&#8217;s rewrite our test to use this method:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -144,20 +159,28 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span> <span class="sr">/^I am a logged in user with the email address </span><span class="si">#{</span><span class="no">PHRASE</span><span class="si">}</span><span class="sr">$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">email_address</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by_email_address!</span><span class="p">(</span><span class="n">email_address</span><span class="p">)</span>
-</span><span class='line'>  <span class="c1"># etc</span>
-</span><span class='line'><span class="k">end</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="no">PostsController</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">describe</span> <span class="s1">&#39;GET #show&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">let</span><span class="p">(</span><span class="ss">:post</span><span class="p">)</span> <span class="p">{</span> <span class="n">mock_model</span><span class="p">(</span><span class="no">Post</span><span class="p">)</span> <span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="no">When</span> <span class="sr">/^I view the (\d+)</span><span class="si">#{</span><span class="no">POSITION</span><span class="si">}</span><span class="sr"> item$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">pos</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">within</span> <span class="s2">&quot;#items .item:nth-child(</span><span class="si">#{</span><span class="n">pos</span><span class="si">}</span><span class="s2">)&quot;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="c1"># etc</span>
+</span><span class='line'>    <span class="n">before</span> <span class="k">do</span>
+</span><span class='line'>      <span class="no">Post</span><span class="o">.</span><span class="n">stub</span><span class="p">(</span><span class="ss">:find</span> <span class="o">=&gt;</span> <span class="n">post</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;loads the requested resource&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="no">Post</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:find</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="n">post</span><span class="o">.</span><span class="n">to_param</span><span class="p">)</span> <span class="p">{</span> <span class="n">post</span> <span class="p">}</span>
+</span><span class='line'>      <span class="n">get</span> <span class="ss">:show</span><span class="p">,</span> <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="n">post</span><span class="o">.</span><span class="n">to_param</span>
+</span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Now we have cleaner steps, with less repetition, and they should take us a little less time to write out in the future. Use, abuse and fork my module above.</p>
+<p>This insulates us from changes to how a resource might be represented in the URI, and more accruately represents how Rails internally handles your resource with URI helpers. For more of the gory details, check out <a href="https://github.com/rails/rails/blob/3-2-stable/actionpack/lib/action_dispatch/routing/polymorphic_routes.rb">ActionDispatch::Routing::PolymorphicRoutes</a>.</p>
 </div>
 
 
@@ -180,15 +203,21 @@
   
 
 
-<time datetime="2010-09-02T00:00:00-04:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2010</time>
+<time datetime="2012-09-30T23:18:00-04:00" pubdate data-updated="true">Sep 30<span>th</span>, 2012</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/controllers/'>controllers</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
+  
+</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jherdman.ca/2010-09-02/quick-cucumber-tip" data-via="james_herdman" data-counturl="http://jherdman.ca/2010-09-02/quick-cucumber-tip" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jherdman.ca/2012-09-30/common-rails-controller-testing-antipattern" data-via="james_herdman" data-counturl="http://jherdman.ca/2012-09-30/common-rails-controller-testing-antipattern" >Tweet</a>
   
   
   
@@ -197,10 +226,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left articlenav" href="/2010-07-28/quick-vim-tips-using-markdown" title="Previous Post: A Quick Vim Tips -- Using Markdown">&laquo; A Quick Vim Tips -- Using Markdown</a>
+        <a class="basic-alignment left articlenav" href="/2012-01-15/programming-goals-for-2012" title="Previous Post: Programming Goals For 2012">&laquo; Programming Goals For 2012</a>
       
-      
-        <a class="basic-alignment right articlenav" href="/2011-01-19/an-introduction-to-git" title="Next Post: An Introduction to Git">An Introduction to Git &raquo;</a>
       
     </p>
   </footer>
