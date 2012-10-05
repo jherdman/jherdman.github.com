@@ -5,11 +5,25 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>A Quick Vim Tips -- Using Markdown - jherdman.ca</title>
+  <title>Open Ended Ruby Date Ranges - jherdman.ca</title>
   <meta name="author" content="James Herdman">
 
   
-  <meta name="description" content="Vim is my text editor of choice. It doesn&#8217;t have all of the niceties of TextMate, so you often have to assemble them yourself through user &hellip;">
+  <meta name="description" content="Have you ever needed an open-ended Date range in Ruby? Well, check this out: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+require &#39;date&#39; some_date = Date &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +32,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jherdman.ca/2010-07-28/quick-vim-tips-using-markdown">
+  <link rel="canonical" href="http://jherdman.ca/2012-10-05/open-ended-ruby-date-ranges">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -76,7 +90,7 @@
   <header>
     
       
-        <h1 class="entry-title">A Quick Vim Tips -- Using Markdown</h1>
+        <h1 class="entry-title">Open Ended Ruby Date Ranges</h1>
       
     
     
@@ -93,37 +107,47 @@
   
 
 
-<time datetime="2010-07-28T00:00:00-04:00" pubdate data-updated="true">Jul 28<span>th</span>, 2010</time>
+<time datetime="2012-10-05T11:44:00-04:00" pubdate data-updated="true">Oct 5<span>th</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p><a href="http://www.vim.org">Vim</a> is my text editor of choice. It doesn&#8217;t have all of the niceties of <a href="http://macromates.com">TextMate</a>, so you often have to assemble them yourself through user scripts and configuration. One of those areas that Vim needed a little assistance in was its support of <a href="http://daringfireball.net/projects/markdown/">Markdown</a>. The following are some quick tips for improving Vim&#8217;s handling of Markdown.</p>
-
-<h2>Get Better Syntax Support</h2>
-
-<p>Ben Williams has written a fairly good syntax definition for Markdown. It&#8217;s unfortunately not on Vim&#8217;s script index, so you&#8217;ll just have to <a href="http://plasticboy.com/markdown-vim-mode/">grab it from his blog</a>.</p>
-
-<h2>Preview Support</h2>
-
-<p>Chances are your package management system has <a href="http://www.pell.portland.or.us/~orc/Code/discount/">Discount</a> available. Install it. Once you do so, you&#8217;ll have a command line tool called &#8220;markdown&#8221; at your disposal. Once you do so, open up your vimrc and add the following to it:</p>
+<div class="entry-content"><p>Have you ever needed an open-ended <code>Date</code> range in Ruby? Well, check this out:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; Markdown preview</span>
-</span><span class='line'>imap &amp;<span class="k">lt</span>;leader&amp;gt;<span class="k">p</span> &amp;<span class="k">lt</span>;ESC&amp;gt;:<span class="k">w</span><span class="p">!</span>&amp;<span class="k">lt</span>;CR&amp;gt;:<span class="p">!</span>markdown % &amp;<span class="k">lt</span>; %.html &amp;amp;&amp;amp; open %.html&amp;<span class="k">lt</span>;CR&amp;gt;&amp;<span class="k">lt</span>;CR<span class="p">&gt;</span><span class="k">a</span>
-</span><span class='line'>map  &amp;<span class="k">lt</span>;leader&amp;gt;<span class="k">p</span> &amp;<span class="k">lt</span>;ESC&amp;gt;:<span class="k">w</span><span class="p">!</span>&amp;<span class="k">lt</span>;CR&amp;gt;:<span class="p">!</span>markdown % &amp;<span class="k">lt</span>; %.html &amp;amp;&amp;amp; open %.html&amp;<span class="k">lt</span>;CR&amp;gt;&amp;<span class="k">lt</span>;CR<span class="p">&gt;</span><span class="k">a</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;date&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">some_date</span> <span class="o">=</span> <span class="no">Date</span><span class="o">.</span><span class="n">today</span>
+</span><span class='line'><span class="n">tomorrow</span> <span class="o">=</span> <span class="n">some_date</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">yesterday</span> <span class="o">=</span> <span class="n">some_date</span> <span class="o">-</span> <span class="mi">1</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">open_ended_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">some_date</span><span class="o">.</span><span class="n">.</span><span class="mi">1</span><span class="o">/</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span>
+</span><span class='line'><span class="c1"># =&gt; ((2456206j,0s,0n),+0s,2299161j)&gt;..Infinity</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">open_ended_range</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">tomorrow</span><span class="p">)</span>
+</span><span class='line'><span class="c1"># =&gt; true</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">open_ended_range</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">yesterday</span><span class="p">)</span>
+</span><span class='line'><span class="c1"># =&gt; false</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>This will generate a preview of your Markdown file that you are currently viewing. If you&#8217;re really clever, you&#8217;ll also add &#8220;*.mkd.html&#8221; to your gitignore file so that you don&#8217;t have to worry about the generated preview.</p>
-
-<h2>Soft Wrap Your Document</h2>
-
-<p>Head on over to <a href="http://vimcasts.org/episodes/soft-wrapping-text/">Vim Casts</a> to learn about how to use soft word wrapping in your documents. I find soft wrapped text much more natural looking when writing documents.</p>
+<p>Pretty rad stuff.</p>
 </div>
 
 
@@ -146,15 +170,21 @@
   
 
 
-<time datetime="2010-07-28T00:00:00-04:00" pubdate data-updated="true">Jul 28<span>th</span>, 2010</time>
+<time datetime="2012-10-05T11:44:00-04:00" pubdate data-updated="true">Oct 5<span>th</span>, 2012</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/dates/'>dates</a>, <a class='category' href='/blog/categories/range/'>range</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jherdman.ca/2010-07-28/quick-vim-tips-using-markdown" data-via="james_herdman" data-counturl="http://jherdman.ca/2010-07-28/quick-vim-tips-using-markdown" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jherdman.ca/2012-10-05/open-ended-ruby-date-ranges" data-via="james_herdman" data-counturl="http://jherdman.ca/2012-10-05/open-ended-ruby-date-ranges" >Tweet</a>
   
   
   
@@ -163,10 +193,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left articlenav" href="/2010-05-06/public-asset-bundling" title="Previous Post: Public Asset Bundling in Rails">&laquo; Public Asset Bundling in Rails</a>
+        <a class="basic-alignment left articlenav" href="/2012-09-30/common-rails-controller-testing-antipattern" title="Previous Post: A Common Rails Controller Testing Antipattern">&laquo; A Common Rails Controller Testing Antipattern</a>
       
-      
-        <a class="basic-alignment right articlenav" href="/2010-09-02/quick-cucumber-tip" title="Next Post: A Quick Cucumber Tip">A Quick Cucumber Tip &raquo;</a>
       
     </p>
   </footer>

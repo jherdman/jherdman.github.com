@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: range | jherdman.ca]]></title>
+  <link href="http://jherdman.ca/blog/categories/range/atom.xml" rel="self"/>
+  <link href="http://jherdman.ca/"/>
+  <updated>2012-10-05T11:50:36-04:00</updated>
+  <id>http://jherdman.ca/</id>
+  <author>
+    <name><![CDATA[James Herdman]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Open Ended Ruby Date Ranges]]></title>
+    <link href="http://jherdman.ca/2012-10-05/open-ended-ruby-date-ranges"/>
+    <updated>2012-10-05T11:44:00-04:00</updated>
+    <id>http://jherdman.ca/2012-10-05/open-ended-ruby-date-ranges</id>
+    <content type="html"><![CDATA[<p>Have you ever needed an open-ended <code>Date</code> range in Ruby? Well, check this out:</p>
+
+<p>```ruby
+require 'date'</p>
+
+<p>some_date = Date.today
+tomorrow = some_date + 1
+yesterday = some_date - 1</p>
+
+<p>open_ended_range = (some_date..1/0.0)</p>
+
+<h1>=> ((2456206j,0s,0n),+0s,2299161j)>..Infinity</h1>
+
+<p>open_ended_range.include?(tomorrow)</p>
+
+<h1>=> true</h1>
+
+<p>open_ended_range.include?(yesterday)</p>
+
+<h1>=> false</h1>
+
+<p>```</p>
+
+<p>Pretty rad stuff.</p>
+]]></content>
+  </entry>
+  
+</feed>

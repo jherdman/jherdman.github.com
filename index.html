@@ -9,7 +9,7 @@
   <meta name="author" content="James Herdman">
 
   
-  <meta name="description" content="Here&#8217;s a run of the mill test for a Rails controller action: 1
+  <meta name="description" content="Have you ever needed an open-ended Date range in Ruby? Well, check this out: 1
 2
 3
 4
@@ -23,7 +23,7 @@
 12
 13
 14
-describe PostsController do describe &#39;GET # &hellip;">
+require &#39;date&#39; some_date = Date &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,6 +86,77 @@ describe PostsController do describe &#39;GET # &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2012-10-05/open-ended-ruby-date-ranges">Open Ended Ruby Date Ranges</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-05T11:44:00-04:00" pubdate data-updated="true">Oct 5<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Have you ever needed an open-ended <code>Date</code> range in Ruby? Well, check this out:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;date&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">some_date</span> <span class="o">=</span> <span class="no">Date</span><span class="o">.</span><span class="n">today</span>
+</span><span class='line'><span class="n">tomorrow</span> <span class="o">=</span> <span class="n">some_date</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">yesterday</span> <span class="o">=</span> <span class="n">some_date</span> <span class="o">-</span> <span class="mi">1</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">open_ended_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">some_date</span><span class="o">.</span><span class="n">.</span><span class="mi">1</span><span class="o">/</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span>
+</span><span class='line'><span class="c1"># =&gt; ((2456206j,0s,0n),+0s,2299161j)&gt;..Infinity</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">open_ended_range</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">tomorrow</span><span class="p">)</span>
+</span><span class='line'><span class="c1"># =&gt; true</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">open_ended_range</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">yesterday</span><span class="p">)</span>
+</span><span class='line'><span class="c1"># =&gt; false</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Pretty rad stuff.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1131,6 +1202,10 @@ interface.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2012-10-05/open-ended-ruby-date-ranges">Open Ended Ruby Date Ranges</a>
+      </li>
+    
+      <li class="post">
         <a href="/2012-09-30/common-rails-controller-testing-antipattern">A Common Rails Controller Testing Antipattern</a>
       </li>
     
@@ -1144,10 +1219,6 @@ interface.</p>
     
       <li class="post">
         <a href="/2010-09-02/quick-cucumber-tip">A Quick Cucumber Tip</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2010-07-28/quick-vim-tips-using-markdown">A Quick Vim Tips &#8211; Using Markdown</a>
       </li>
     
   </ul>

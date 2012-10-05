@@ -4,7 +4,7 @@
   <title><![CDATA[jherdman.ca]]></title>
   <link href="http://jherdman.ca/atom.xml" rel="self"/>
   <link href="http://jherdman.ca/"/>
-  <updated>2012-10-01T08:21:57-04:00</updated>
+  <updated>2012-10-05T11:50:36-04:00</updated>
   <id>http://jherdman.ca/</id>
   <author>
     <name><![CDATA[James Herdman]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Open Ended Ruby Date Ranges]]></title>
+    <link href="http://jherdman.ca/2012-10-05/open-ended-ruby-date-ranges"/>
+    <updated>2012-10-05T11:44:00-04:00</updated>
+    <id>http://jherdman.ca/2012-10-05/open-ended-ruby-date-ranges</id>
+    <content type="html"><![CDATA[<p>Have you ever needed an open-ended <code>Date</code> range in Ruby? Well, check this out:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;date&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">some_date</span> <span class="o">=</span> <span class="no">Date</span><span class="o">.</span><span class="n">today</span>
+</span><span class='line'><span class="n">tomorrow</span> <span class="o">=</span> <span class="n">some_date</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">yesterday</span> <span class="o">=</span> <span class="n">some_date</span> <span class="o">-</span> <span class="mi">1</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">open_ended_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">some_date</span><span class="o">.</span><span class="n">.</span><span class="mi">1</span><span class="o">/</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span>
+</span><span class='line'><span class="c1"># =&gt; ((2456206j,0s,0n),+0s,2299161j)&gt;..Infinity</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">open_ended_range</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">tomorrow</span><span class="p">)</span>
+</span><span class='line'><span class="c1"># =&gt; true</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">open_ended_range</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">yesterday</span><span class="p">)</span>
+</span><span class='line'><span class="c1"># =&gt; false</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Pretty rad stuff.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[A Common Rails Controller Testing Antipattern]]></title>
